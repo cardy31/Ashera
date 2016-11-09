@@ -19,8 +19,8 @@ urlpatterns = format_suffix_patterns([
         views.UserDetail.as_view(),
         name='user-detail'),
     url(r'^accounts/profile/$',
-        RedirectView.as_view(url='/', permanent = False),
-        name = 'login'),
+        RedirectView.as_view(url='/', permanent=False),
+        name='login'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ])
 

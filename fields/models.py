@@ -6,7 +6,9 @@ class Field(models.Model):
     # Playing with location data
     latitude = 44.357998
     longtitude = -78.290432
-    api_key = 'd763818ba9e0ade7ba4fc7cc9addd027'
+    API_KEY_DIR = "/Users/RobCardy/Programming/PycharmProjects/weather_key.txt"
+    KEY_FILE = open(API_KEY_DIR, "r")
+    api_key = KEY_FILE.read()
     weatherUrl = "https://api.darksky.net/forecast/" + api_key + "/" + latitude.__str__() + "," + longtitude.__str__()
 
     r = requests.get(url=weatherUrl)
@@ -18,8 +20,8 @@ class Field(models.Model):
 
     phone = models.CharField(max_length=25)
     field = models.CharField(max_length=256)
-    city = models.CharField(max_length=100, null=True)
-    country = models.CharField(max_length=100, null=True)
+    city = models.CharField(max_length=100, null=False, default="Peterborough")
+    country = models.CharField(max_length=100, null=False, default="Canada")
     # Data choices based on Fig. 2: http://ijcta.com/documents/volumes/vol6issue3/ijcta2015060303.pdf
     # Soil
     temp = models.DecimalField(decimal_places=3, max_digits=10, null=True)
